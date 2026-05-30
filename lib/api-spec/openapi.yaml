@@ -245,19 +245,13 @@ paths:
     post:
       operationId: uploadDocument
       tags: [documents]
-      summary: Upload a document to a bot
+      summary: Upload a document to a bot (multipart handled by server directly)
       parameters:
         - name: botId
           in: path
           required: true
           schema:
             type: string
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/DocumentUpload"
       responses:
         "201":
           description: Created
@@ -637,14 +631,6 @@ components:
         uploadedAt:
           type: string
           format: date-time
-
-    DocumentUpload:
-      type: object
-      required: [file]
-      properties:
-        file:
-          type: string
-          format: binary
 
     ChatMessageInput:
       type: object
